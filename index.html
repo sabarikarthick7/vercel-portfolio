@@ -432,28 +432,25 @@ function drawParticles(){
 drawParticles();
 
 // ===== SCROLL REVEAL =====
-const revealEls = document.querySelectorAll(".reveal, .reveal-left, .reveal-right, .reveal-scale");
+// ===== SCROLL REVEAL =====
 const revealObserver = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if(e.isIntersecting){
-      // Stagger siblings if they share a parent grid
-      const siblings = e.target.parentElement.querySelectorAll(".reveal-scale");
-      if(siblings.length > 1){
-        let delay = 0;
-        siblings.forEach(sib => {
-          if(!sib.classList.contains("visible")){
-            setTimeout(()=>sib.classList.add("visible"), delay);
-            delay += 80;
-          }
-        });
-      } else {
-        e.target.classList.add("visible");
-      }
+      e.target.classList.add("visible");
     }
   });
-}, {threshold: 0.1, rootMargin: "0px 0px -40px 0px"});
+}, {threshold: 0.08, rootMargin: "0px 0px -30px 0px"});
 
-revealEls.forEach(el => revealObserver.observe(el));
+document.querySelectorAll(".reveal, .reveal-left, .reveal-right, .reveal-scale").forEach((el, i) => {
+  // Add stagger delay based on position among siblings
+  const parent = el.parentElement;
+  const siblings = Array.from(parent.querySelectorAll(".reveal-scale, .reveal"));
+  const idx = siblings.indexOf(el);
+  if(idx > 0 && el.classList.contains("reveal-scale")) {
+    el.style.transitionDelay = (idx * 0.08) + "s";
+  }
+  revealObserver.observe(el);
+});
 
 // ===== BACK TO TOP =====
 window.addEventListener("scroll",()=>{
