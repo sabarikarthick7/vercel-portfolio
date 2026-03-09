@@ -132,6 +132,70 @@ footer{background:#000000;color:#ffffff;text-align:center;padding:50px 0;margin-
 50%{text-shadow:0 0 15px rgba(59,130,246,0.9),0 0 25px rgba(59,130,246,0.7),0 0 40px rgba(59,130,246,0.6);opacity:1;}
 100%{text-shadow:0 0 5px rgba(59,130,246,0.4),0 0 10px rgba(59,130,246,0.4);opacity:0.7;}
 }
+/* ===== PARTICLES ===== */
+#particles-canvas{
+position:fixed;top:0;left:0;
+width:100%;height:100%;
+z-index:0;
+pointer-events:none;
+}
+
+/* Push all content above particles */
+.navbar{z-index:1000;}
+#backToTop{z-index:999;}
+.container,.hero{position:relative;z-index:1;}
+section{position:relative;z-index:1;}
+footer{position:relative;z-index:1;}
+
+/* ===== SCROLL FADE-IN ===== */
+.reveal{
+opacity:0;
+transform:translateY(40px);
+transition:opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible{
+opacity:1;
+transform:translateY(0);
+}
+.reveal-left{
+opacity:0;
+transform:translateX(-40px);
+transition:opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal-left.visible{
+opacity:1;
+transform:translateX(0);
+}
+.reveal-right{
+opacity:0;
+transform:translateX(40px);
+transition:opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal-right.visible{
+opacity:1;
+transform:translateX(0);
+}
+.reveal-scale{
+opacity:0;
+transform:scale(0.92);
+transition:opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal-scale.visible{
+opacity:1;
+transform:scale(1);
+}
+
+/* Stagger delays for grid children */
+.stagger-children > *:nth-child(1){transition-delay:0s;}
+.stagger-children > *:nth-child(2){transition-delay:0.1s;}
+.stagger-children > *:nth-child(3){transition-delay:0.2s;}
+.stagger-children > *:nth-child(4){transition-delay:0.3s;}
+.stagger-children > *:nth-child(5){transition-delay:0.4s;}
+.stagger-children > *:nth-child(6){transition-delay:0.5s;}
+.stagger-children > *:nth-child(7){transition-delay:0.6s;}
+.stagger-children > *:nth-child(8){transition-delay:0.7s;}
+.stagger-children > *:nth-child(9){transition-delay:0.8s;}
+
 .fade-in{opacity:0;transform:translateY(30px);animation:fadeUp 1s ease forwards;}
 @keyframes fadeUp{to{opacity:1;transform:translateY(0);}}
 
@@ -179,6 +243,9 @@ transition:0.2s;border-left:3px solid transparent;
 </head>
 <body>
 
+<!-- PARTICLES BACKGROUND -->
+<canvas id="particles-canvas"></canvas>
+
 <!-- BACK TO TOP -->
 <button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
   <i class="fas fa-chevron-up"></i>
@@ -219,12 +286,12 @@ transition:0.2s;border-left:3px solid transparent;
 <div class="container">
 <!-- HERO -->
 <div class="hero">
-<div class="hero-text">
+<div class="hero-text reveal-left">
 <h1>Hello, I'm <span>Sabari Karthick</span></h1>
 <p>DevOps & Cloud Engineer focused on CI/CD automation, scalable infrastructure, and containerized deployments.</p>
 <a href="Sabari_Karthick_Resume.pdf" target="_blank" class="hero-btn">View Resume</a>
 </div>
-<div class="hero-image">
+<div class="hero-image reveal-right">
 <img src="profile.jpeg" class="profile-img">
 </div>
 </div>
@@ -233,8 +300,8 @@ transition:0.2s;border-left:3px solid transparent;
 <!-- ABOUT -->
 <section id="about">
 <div class="container">
-<h2 class="section-title">About Me</h2>
-<div class="card">
+<h2 class="section-title reveal">About Me</h2>
+<div class="card reveal">
 I'm a DevOps-focused engineering student with a passion for cloud computing, automation, and scalable infrastructure. I've built hands-on experience working with Docker containerization, Jenkins CI/CD pipelines, and Linux environments. Skilled in Git version control and automation scripting, I'm constantly learning modern DevOps tools and cloud platforms like AWS, AZURE, GCP. I love building efficient, reliable workflows that bridge development and operations.
 <br><br>
 Currently seeking opportunities to contribute to real-world DevOps and cloud engineering projects.
@@ -245,8 +312,8 @@ Currently seeking opportunities to contribute to real-world DevOps and cloud eng
 <!-- PROFESSIONAL SUMMARY -->
 <section id="summary">
 <div class="container">
-<h2 class="section-title">Professional Summary</h2>
-<div class="card">
+<h2 class="section-title reveal">Professional Summary</h2>
+<div class="card reveal">
 Experienced in Jenkins Master–Agent architecture, Docker containerization, and Kubernetes orchestration.
 Skilled in AWS cloud services, Infrastructure as Code, and CI/CD automation pipelines.
 Strong foundation in Linux & Windows administration and networking fundamentals.
@@ -257,38 +324,38 @@ Strong foundation in Linux & Windows administration and networking fundamentals.
 <!-- PROJECTS -->
 <section id="projects">
 <div class="container">
-<h2 class="section-title">Projects</h2>
-<div class="projects-grid">
+<h2 class="section-title reveal">Projects</h2>
+<div class="projects-grid stagger-children">
 
-<div class="project-card">
+<div class="project-card reveal-scale">
 <h3>Netflix DevOps Project</h3>
 <p>Netflix-style full-stack app deployed with a Jenkins CI/CD pipeline using Docker and Kubernetes.</p>
 <div class="project-tags"><span class="tag">Jenkins</span><span class="tag">Docker</span><span class="tag">Kubernetes</span></div>
 <a href="https://github.com/sabarikarthick7/netflix-devops-project" target="_blank" class="project-btn"><i class="fab fa-github"></i>View Project</a>
 </div>
 
-<div class="project-card">
+<div class="project-card reveal-scale">
 <h3>Event-Driven Cloud Pipeline</h3>
 <p>AWS serverless architecture using Terraform and CI/CD automation for event-driven data processing.</p>
 <div class="project-tags"><span class="tag">AWS</span><span class="tag">Terraform</span><span class="tag">CI/CD</span></div>
 <a href="https://github.com/sabarikarthick7/event-driven-cloud-pipeline" target="_blank" class="project-btn"><i class="fab fa-github"></i>View Project</a>
 </div>
 
-<div class="project-card">
+<div class="project-card reveal-scale">
 <h3>Jenkins Master Agent Architecture</h3>
 <p>Distributed Jenkins setup using Docker-based remote agents for scalable build pipelines.</p>
 <div class="project-tags"><span class="tag">Jenkins</span><span class="tag">Docker</span><span class="tag">DevOps</span></div>
 <a href="https://github.com/sabarikarthick7/CodeAlpha_Jenkins_Remoting.git" target="_blank" class="project-btn"><i class="fab fa-github"></i>View Project</a>
 </div>
 
-<div class="project-card">
+<div class="project-card reveal-scale">
 <h3>Docker Web Server</h3>
 <p>Containerized NGINX web server deployed and managed using Docker for production-ready serving.</p>
 <div class="project-tags"><span class="tag">Docker</span><span class="tag">NGINX</span><span class="tag">Linux</span></div>
 <a href="https://github.com/sabarikarthick7/CodeAlpha_Docker_WebServer.git" target="_blank" class="project-btn"><i class="fab fa-github"></i>View Project</a>
 </div>
 
-<div class="project-card updating-card">
+<div class="project-card updating-card reveal-scale">
 <h3 class="updating-text">Updating Soon...</h3>
 </div>
 
@@ -299,58 +366,58 @@ Strong foundation in Linux & Windows administration and networking fundamentals.
 <!-- TECHNICAL SKILLS -->
 <section id="skills">
 <div class="container">
-<h2 class="section-title">Technical Skills</h2>
-<div class="skills-grid">
+<h2 class="section-title reveal">Technical Skills</h2>
+<div class="skills-grid stagger-children">
 
-<div class="skill-card">
+<div class="skill-card reveal-scale">
 <i class="fab fa-docker skill-icon"></i>
 <h3>Docker</h3>
 <p>Containerization platform for building and deploying scalable applications.</p>
 </div>
 
-<div class="skill-card">
+<div class="skill-card reveal-scale">
 <i class="fas fa-cogs skill-icon"></i>
 <h3>Jenkins</h3>
 <p>CI/CD automation server for pipeline orchestration and build automation.</p>
 </div>
 
-<div class="skill-card">
+<div class="skill-card reveal-scale">
 <i class="fab fa-aws skill-icon"></i>
 <h3>AWS</h3>
 <p>Cloud platform for deploying scalable and secure infrastructure.</p>
 </div>
 
-<div class="skill-card">
+<div class="skill-card reveal-scale">
 <i class="fab fa-linux skill-icon"></i>
 <h3>Linux Administration</h3>
 <p>System configuration, shell scripting and server management.</p>
 </div>
 
-<div class="skill-card">
+<div class="skill-card reveal-scale">
 <i class="fab fa-windows skill-icon"></i>
 <h3>Windows Administration</h3>
 <p>Windows Server management, system configuration, and user administration.</p>
 </div>
 
-<div class="skill-card">
+<div class="skill-card reveal-scale">
 <i class="fas fa-dharmachakra skill-icon"></i>
 <h3>Kubernetes</h3>
 <p>Container orchestration for managing distributed applications.</p>
 </div>
 
-<div class="skill-card">
+<div class="skill-card reveal-scale">
 <i class="fas fa-sync-alt skill-icon"></i>
 <h3>CI/CD</h3>
 <p>Automated pipelines for continuous integration and deployment.</p>
 </div>
 
-<div class="skill-card">
+<div class="skill-card reveal-scale">
 <i class="fab fa-git-alt skill-icon"></i>
 <h3>Git & GitHub</h3>
 <p>Version control and collaborative development workflows.</p>
 </div>
 
-<div class="skill-card">
+<div class="skill-card reveal-scale">
 <i class="fab fa-python skill-icon"></i>
 <h3>Python</h3>
 <p>Scripting and automation for DevOps workflows and tooling.</p>
@@ -363,8 +430,8 @@ Strong foundation in Linux & Windows administration and networking fundamentals.
 <!-- SOFT SKILLS -->
 <section>
 <div class="container">
-<h2 class="section-title">Soft Skills</h2>
-<div class="grid">
+<h2 class="section-title reveal">Soft Skills</h2>
+<div class="grid stagger-children">
 <div class="skill-item"><i class="fas fa-comments"></i> Communication</div>
 <div class="skill-item"><i class="fas fa-user-tie"></i> Leadership</div>
 <div class="skill-item"><i class="fas fa-users"></i> Team Collaboration</div>
@@ -377,8 +444,8 @@ Strong foundation in Linux & Windows administration and networking fundamentals.
 <!-- LANGUAGES -->
 <section id="languages">
 <div class="container">
-<h2 class="section-title">Languages</h2>
-<div class="grid">
+<h2 class="section-title reveal">Languages</h2>
+<div class="grid stagger-children">
 <div class="card"><h3>English</h3><p>Full Professional Proficiency</p></div>
 <div class="card"><h3>Tamil</h3><p>Native Proficiency</p></div>
 </div>
@@ -388,8 +455,8 @@ Strong foundation in Linux & Windows administration and networking fundamentals.
 <!-- CERTIFICATIONS -->
 <section id="certifications">
 <div class="container">
-<h2 class="section-title">Certifications</h2>
-<div class="grid">
+<h2 class="section-title reveal">Certifications</h2>
+<div class="grid stagger-children">
 <div class="cert-card">
 <a href="https://edu.google.accredible.com/d91bb352-8824-47ca-97fa-ea668494bddf#acc.ohJ1jM7v" target="_blank" style="text-decoration:none;color:inherit;">
 <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" class="cert-img">
@@ -415,7 +482,7 @@ Strong foundation in Linux & Windows administration and networking fundamentals.
 <!-- EDUCATION -->
 <section id="education">
 <div class="container">
-<h2 class="section-title">Education</h2>
+<h2 class="section-title reveal">Education</h2>
 <div class="timeline">
 <div class="timeline-item"><h3>Sairam Matric Higher Secondary School</h3><p>Higher Secondary Education – Madurai</p></div>
 <div class="timeline-item"><h3>SRM Institute of Science and Technology</h3><p>B.Tech Aerospace Engineering – Chennai</p></div>
@@ -426,7 +493,7 @@ Strong foundation in Linux & Windows administration and networking fundamentals.
 <!-- VOLUNTEERING -->
 <section id="volunteering">
 <div class="container">
-<h2 class="section-title">Volunteering</h2>
+<h2 class="section-title reveal">Volunteering</h2>
 <div class="card">
 <div style="display:flex;gap:25px;align-items:flex-start;flex-wrap:wrap;">
 <div style="flex:1;min-width:250px;">
@@ -449,7 +516,7 @@ Strong foundation in Linux & Windows administration and networking fundamentals.
 <!-- CONTACT -->
 <section id="contact" class="contact-section">
 <div class="container">
-<h2 class="section-title">Contact</h2>
+<h2 class="section-title reveal">Contact</h2>
 <div class="contact-buttons">
 <a href="mailto:sabarikarthick.it@gmail.com" class="contact-btn"><i class="fas fa-envelope"></i>Email</a>
 <a href="https://github.com/sabarikarthick7" target="_blank" class="contact-btn"><i class="fab fa-github"></i>GitHub</a>
@@ -461,17 +528,105 @@ Strong foundation in Linux & Windows administration and networking fundamentals.
 <footer>© 2026 M. Sabari Karthick | All Rights Reserved</footer>
 
 <script>
+// ===== PARTICLES =====
+const canvas = document.getElementById("particles-canvas");
+const ctx = canvas.getContext("2d");
+let particles = [];
+
+function resizeCanvas(){
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener("resize", () => { resizeCanvas(); initParticles(); });
+
+function initParticles(){
+  particles = [];
+  const count = Math.floor((canvas.width * canvas.height) / 12000);
+  for(let i = 0; i < count; i++){
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 1.5 + 0.3,
+      dx: (Math.random() - 0.5) * 0.3,
+      dy: (Math.random() - 0.5) * 0.3,
+      alpha: Math.random() * 0.6 + 0.2
+    });
+  }
+}
+initParticles();
+
+function drawParticles(){
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particles.forEach(p => {
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(147, 197, 253, ${p.alpha})`;
+    ctx.fill();
+
+    p.x += p.dx;
+    p.y += p.dy;
+    if(p.x < 0 || p.x > canvas.width) p.dx *= -1;
+    if(p.y < 0 || p.y > canvas.height) p.dy *= -1;
+  });
+
+  // Draw connecting lines between nearby particles
+  for(let i = 0; i < particles.length; i++){
+    for(let j = i+1; j < particles.length; j++){
+      const dist = Math.hypot(particles[i].x - particles[j].x, particles[i].y - particles[j].y);
+      if(dist < 100){
+        ctx.beginPath();
+        ctx.moveTo(particles[i].x, particles[i].y);
+        ctx.lineTo(particles[j].x, particles[j].y);
+        ctx.strokeStyle = `rgba(59, 130, 246, ${0.15 * (1 - dist/100)})`;
+        ctx.lineWidth = 0.5;
+        ctx.stroke();
+      }
+    }
+  }
+  requestAnimationFrame(drawParticles);
+}
+drawParticles();
+
+// ===== SCROLL REVEAL =====
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting) {
+      e.target.classList.add("visible");
+      // Also trigger stagger children inside this element
+      e.target.querySelectorAll(".reveal, .reveal-left, .reveal-right, .reveal-scale").forEach(child => {
+        child.classList.add("visible");
+      });
+    }
+  });
+}, {threshold: 0.12});
+
+document.querySelectorAll(".reveal, .reveal-left, .reveal-right, .reveal-scale").forEach(el => {
+  revealObserver.observe(el);
+});
+
+// Stagger grid children — observe parent and trigger children with delay
+document.querySelectorAll(".stagger-children").forEach(parent => {
+  new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        e.target.querySelectorAll(".reveal-scale, .skill-item, .cert-card, .timeline-item").forEach((child, i) => {
+          setTimeout(() => child.classList.add("visible"), i * 100);
+        });
+      }
+    });
+  }, {threshold: 0.1}).observe(parent);
+});
+
+// Make skill-items and cert-cards and timeline-items also reveal
+document.querySelectorAll(".skill-item, .cert-card, .timeline-item").forEach(el => {
+  el.classList.add("reveal-scale");
+});
+
 // ===== BACK TO TOP =====
 window.addEventListener("scroll", () => {
   document.getElementById("backToTop").classList.toggle("visible", window.scrollY > 400);
 });
-
-// ===== SECTION OBSERVER =====
-document.querySelectorAll("section").forEach(s =>
-  new IntersectionObserver(entries => {
-    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add("show"); });
-  },{threshold:0.15}).observe(s)
-);
 
 // ===== MOBILE MENU =====
 function toggleMenu(){
