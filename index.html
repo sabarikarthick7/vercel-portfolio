@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M. Sabari Karthick | DevOps Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:linear-gradient(135deg,#000000 0%,#050816 40%,#0a0f2c 70%,#0d1b4d 100%);color:#e5e7eb;line-height:1.6;overflow-x:hidden;padding-top:90px;}
+body::before{content:"";position:fixed;top:50%;left:70%;width:700px;height:700px;background:radial-gradient(circle,rgba(37,99,235,0.25),transparent 70%);transform:translate(-50%,-50%);z-index:-1;}
+
+/* PARTICLES */
+#particles-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;}
+
+/* Z-INDEX LAYERS */
+.navbar{z-index:1000!important;}
+#backToTop{z-index:999;}
+.container,.hero,section,footer{position:relative;z-index:1;}
+
+/* LAYOUT */
+.container{max-width:1200px;margin:auto;padding:0 40px;}
+section{padding:120px 0;}
+.section-title{font-size:32px;font-weight:700;color:#3b82f6;margin-bottom:40px;}
+
+/* BACK TO TOP */
+#backToTop{position:fixed;bottom:30px;right:30px;width:48px;height:48px;background:linear-gradient(135deg,#2563eb,#3b82f6);color:white;border:none;border-radius:50%;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(20px);transition:0.3s ease;box-shadow:0 4px 20px rgba(37,99,235,0.5);}
+#backToTop.visible{opacity:1;transform:translateY(0);}
+#backToTop:hover{transform:translateY(-4px);box-shadow:0 8px 25px rgba(37,99,235,0.7);}
+
+/* HERO */
+.hero{display:flex;align-items:center;justify-content:space-between;gap:60px;padding:140px 0 100px 0;}
+.hero-text{flex:1;}
+.hero-text h1{font-size:48px;margin-bottom:15px;}
+.hero-text span{color:#3b82f6;}
+.hero-text p{color:#9ca3af;max-width:520px;margin-bottom:25px;font-size:18px;}
+.hero-btn{display:inline-block;padding:14px 32px;background:linear-gradient(90deg,#2563eb,#3b82f6);border-radius:10px;color:white;font-weight:600;text-decoration:none;transition:0.3s;margin-top:10px;}
+.hero-btn:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(37,99,235,0.6);}
+.hero-image{text-align:right;}
+.profile-img{width:260px;height:260px;border-radius:18px;object-fit:cover;border:2px solid #3b82f6;}
+
+/* CARD */
+.card{background:linear-gradient(145deg,#0f172a,#111c36);padding:40px 45px;border-radius:16px;border:1px solid #1e293b;margin-bottom:50px;transition:0.4s ease;}
+.card h3{margin-bottom:18px;font-size:24px;}
+.card p{margin-bottom:28px;color:#9ca3af;font-size:17px;line-height:1.7;}
+.card:hover{border-color:#3b82f6;transform:translateY(-5px);}
+
+/* PROJECTS GRID */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:25px;}
+.project-card{background:linear-gradient(145deg,#0f172a,#111c36);padding:28px;border-radius:16px;border:1px solid #1e293b;transition:0.4s ease;display:flex;flex-direction:column;gap:12px;}
+.project-card:hover{border-color:#3b82f6;transform:translateY(-5px);box-shadow:0 10px 30px rgba(37,99,235,0.2);}
+.project-card h3{font-size:19px;color:#f1f5f9;}
+.project-card p{color:#9ca3af;font-size:15px;line-height:1.6;flex:1;}
+.project-btn{display:inline-flex;align-items:center;gap:7px;padding:10px 20px;background:linear-gradient(90deg,#2563eb,#3b82f6);border-radius:8px;color:white;font-weight:600;font-size:14px;text-decoration:none;transition:0.3s;width:fit-content;margin-top:4px;}
+.project-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(37,99,235,0.5);}
+.updating-card{display:flex;justify-content:center;align-items:center;min-height:160px;}
+
+/* GRID */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:25px;}
+
+/* SOFT SKILLS */
+.skill-item{background:#0f172a;padding:15px;border-radius:8px;border:1px solid #1e293b;display:flex;align-items:center;gap:10px;transition:0.3s;}
+.skill-item i{color:#3b82f6;}
+.skill-item:hover{border-color:#3b82f6;transform:translateY(-3px);}
+
+/* SKILL CARDS */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px;}
+.skill-card{background:linear-gradient(145deg,#0a0f2c,#111c36);padding:30px;border-radius:20px;border:1px solid rgba(59,130,246,0.2);transition:0.4s ease;position:relative;overflow:hidden;}
+.skill-card::before{content:"";position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(59,130,246,0.15),transparent 70%);transform:rotate(25deg);opacity:0;transition:0.4s;}
+.skill-card:hover::before{opacity:1;}
+.skill-card:hover{transform:translateY(-8px);border-color:#3b82f6;box-shadow:0 10px 40px rgba(37,99,235,0.3);}
+.skill-icon{font-size:28px;color:#3b82f6;margin-bottom:15px;}
+.skill-card h3{margin-bottom:10px;font-size:20px;}
+.skill-card p{color:#9ca3af;font-size:15px;line-height:1.6;}
+
+/* CERTIFICATIONS */
+.cert-card{background:white;color:#111827;text-align:center;padding:30px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.5);transition:opacity 0.6s ease,transform 0.6s ease;}
+.cert-card:hover{transform:translateY(-6px)!important;}
+.cert-img{height:50px;margin-bottom:15px;object-fit:contain;}
+
+/* TIMELINE */
+.timeline{display:flex;flex-direction:column;gap:20px;}
+.timeline-item{background:#0f172a;padding:20px;border-left:4px solid #3b82f6;border-radius:8px;transition:0.4s ease;}
+.timeline-item:hover{background:#111c36;transform:translateX(6px);}
+
+/* CONTACT */
+.contact-section{text-align:center;}
+.contact-buttons{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-top:20px;}
+.contact-btn{padding:12px 22px;background:#2563eb;border-radius:6px;color:white;text-decoration:none;font-weight:600;display:flex;align-items:center;gap:8px;transition:0.3s;}
+.contact-btn:hover{background:#1d4ed8;transform:translateY(-3px);}
+
+footer{background:#000000;color:#ffffff;text-align:center;padding:50px 0;margin-top:60px;}
+
+/* RESPONSIVE */
+@media(max-width:992px){.hero{flex-direction:column;text-align:center;}.hero-image{text-align:center;}.profile-img{margin-top:20px;}}
+@media(max-width:600px){.container{padding:0 20px;}.hero-text h1{font-size:32px;}.projects-grid{grid-template-columns:1fr;}}
+
+/* UPDATING GLOW */
+.updating-text{font-size:26px;font-weight:600;color:#3b82f6;letter-spacing:2px;animation:glowPulse 2s infinite ease-in-out;}
+@keyframes glowPulse{
+  0%{text-shadow:0 0 5px rgba(59,130,246,0.4),0 0 10px rgba(59,130,246,0.4);opacity:0.7;}
+  50%{text-shadow:0 0 15px rgba(59,130,246,0.9),0 0 25px rgba(59,130,246,0.7),0 0 40px rgba(59,130,246,0.6);opacity:1;}
+  100%{text-shadow:0 0 5px rgba(59,130,246,0.4),0 0 10px rgba(59,130,246,0.4);opacity:0.7;}
+}
+
+/* ===== NAVBAR ===== */
+.navbar{position:fixed;top:0;left:0;width:100%;background:rgba(0,0,0,0.6);backdrop-filter:blur(10px);border-bottom:1px solid #1e293b;transition:0.3s ease;}
+.navbar.scrolled{background:#000;box-shadow:0 5px 20px rgba(0,0,0,0.6);}
+.nav-container{max-width:1200px;margin:auto;padding:18px 40px;display:flex;justify-content:space-between;align-items:center;}
+.nav-logo{color:#fff;font-weight:700;font-size:18px;text-decoration:none;}
+.nav-logo span{color:#3b82f6;}
+.nav-links{display:flex;gap:4px;}
+
+/* Navbar link with pill active style */
+.nav-links a{
+  color:#94a3b8;text-decoration:none;font-weight:500;font-size:13px;
+  padding:6px 12px;border-radius:6px;
+  border:1px solid transparent;
+  transition:all 0.25s ease;
+  white-space:nowrap;
+}
+.nav-links a:hover{color:#e2e8f0;background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.08);}
+.nav-links a.active{
+  color:#fff;
+  background:rgba(37,99,235,0.2);
+  border-color:rgba(59,130,246,0.5);
+  box-shadow:0 0 10px rgba(59,130,246,0.15);
+}
+
+/* Hamburger */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+.hamburger span{display:block;width:24px;height:2px;background:#fff;border-radius:2px;transition:0.3s ease;}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+/* Mobile menu */
+.mobile-menu{position:absolute;top:100%;left:0;width:100%;background:rgba(2,6,23,0.98);backdrop-filter:blur(20px);display:none;flex-direction:column;padding:8px 0 16px;border-bottom:1px solid rgba(59,130,246,0.2);animation:slideDown 0.25s ease;}
+.mobile-menu a{color:#94a3b8;padding:13px 28px;text-decoration:none;font-size:14px;font-weight:500;display:flex;align-items:center;gap:12px;transition:0.2s;border-left:3px solid transparent;}
+.mobile-menu a i{width:16px;color:#3b82f6;font-size:13px;}
+.mobile-menu a:hover{color:#fff;background:rgba(59,130,246,0.07);border-left-color:#3b82f6;padding-left:34px;}
+.mobile-menu a.active{color:#fff;background:rgba(37,99,235,0.15);border-left-color:#3b82f6;}
+
+@keyframes slideDown{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+@media(max-width:768px){.nav-links{display:none;}.hamburger{display:flex;}}
+
+/* ===== SCROLL REVEAL ===== */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal-left{opacity:0;transform:translateX(-50px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.reveal-left.visible{opacity:1;transform:translateX(0);}
+.reveal-right{opacity:0;transform:translateX(50px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.reveal-right.visible{opacity:1;transform:translateX(0);}
+.reveal-scale{opacity:0;transform:scale(0.9) translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease;}
+.reveal-scale.visible{opacity:1;transform:scale(1) translateY(0);}
+</style>
+</head>
+<body>
+
+<canvas id="particles-canvas"></canvas>
+
+<button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <i class="fas fa-chevron-up"></i>
+</button>
+
+<!-- NAVBAR -->
+<div class="navbar">
+<div class="nav-container">
+<a href="#" class="nav-logo">Portfolio<span>.</span></a>
+<div class="nav-links">
+<a href="#about">About</a>
+<a href="#summary">Summary</a>
+<a href="#projects">Projects</a>
+<a href="#skills">Skills</a>
+<a href="#softskills">Soft Skills</a>
+<a href="#certifications">Certifications</a>
+<a href="#education">Education</a>
+<a href="#languages">Languages</a>
+<a href="#volunteering">Volunteering</a>
+<a href="#contact">Contact</a>
+</div>
+<div class="hamburger" id="hamburger" onclick="toggleMenu()">
+  <span></span><span></span><span></span>
+</div>
+</div>
+<div class="mobile-menu" id="mobileMenu">
+<a href="#about"><i class="fas fa-user fa-fw"></i>About</a>
+<a href="#summary"><i class="fas fa-file-alt fa-fw"></i>Summary</a>
+<a href="#projects"><i class="fas fa-code fa-fw"></i>Projects</a>
+<a href="#skills"><i class="fas fa-cogs fa-fw"></i>Skills</a>
+<a href="#softskills"><i class="fas fa-brain fa-fw"></i>Soft Skills</a>
+<a href="#certifications"><i class="fas fa-certificate fa-fw"></i>Certifications</a>
+<a href="#education"><i class="fas fa-graduation-cap fa-fw"></i>Education</a>
+<a href="#languages"><i class="fas fa-language fa-fw"></i>Languages</a>
+<a href="#volunteering"><i class="fas fa-hands-helping fa-fw"></i>Volunteering</a>
+<a href="#contact"><i class="fas fa-envelope fa-fw"></i>Contact</a>
+</div>
+</div>
+
+<div class="container">
+<div class="hero">
+<div class="hero-text reveal-left">
+<h1>Hello, I'm <span>Sabari Karthick</span></h1>
+<p>DevOps & Cloud Engineer focused on CI/CD automation, scalable infrastructure, and containerized deployments.</p>
+<a href="Sabari_Karthick_Resume.pdf" target="_blank" class="hero-btn">View Resume</a>
+</div>
+<div class="hero-image reveal-right">
+<img src="profile.jpeg" class="profile-img">
+</div>
+</div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+<div class="container">
+<h2 class="section-title reveal">About Me</h2>
+<div class="card reveal">
+I'm a DevOps-focused engineering student with a passion for cloud computing, automation, and scalable infrastructure. I've built hands-on experience working with Docker containerization, Jenkins CI/CD pipelines, and Linux environments. Skilled in Git version control and automation scripting, I'm constantly learning modern DevOps tools and cloud platforms like AWS, AZURE, GCP. I love building efficient, reliable workflows that bridge development and operations.
+<br><br>
+Currently seeking opportunities to contribute to real-world DevOps and cloud engineering projects.
+</div>
+</div>
+</section>
+
+<!-- SUMMARY -->
+<section id="summary">
+<div class="container">
+<h2 class="section-title reveal">Professional Summary</h2>
+<div class="card reveal">
+Experienced in Jenkins Master–Agent architecture, Docker containerization, and Kubernetes orchestration.
+Skilled in AWS cloud services, Infrastructure as Code, and CI/CD automation pipelines.
+Strong foundation in Linux & Windows administration and networking fundamentals.
+</div>
+</div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+<div class="container">
+<h2 class="section-title reveal">Projects</h2>
+<div class="projects-grid">
+
+<div class="project-card reveal-scale">
+<h3>Netflix DevOps Project</h3>
+<p>Netflix-style full-stack app deployed with a Jenkins CI/CD pipeline using Docker and Kubernetes.</p>
+<a href="https://github.com/sabarikarthick7/netflix-devops-project" target="_blank" class="project-btn"><i class="fab fa-github"></i>View Project</a>
+</div>
+
+<div class="project-card reveal-scale">
+<h3>Event-Driven Cloud Pipeline</h3>
+<p>AWS serverless architecture using Terraform and CI/CD automation for event-driven data processing.</p>
+<a href="https://github.com/sabarikarthick7/event-driven-cloud-pipeline" target="_blank" class="project-btn"><i class="fab fa-github"></i>View Project</a>
+</div>
+
+<div class="project-card reveal-scale">
+<h3>Jenkins Master Agent Architecture</h3>
+<p>Distributed Jenkins setup using Docker-based remote agents for scalable build pipelines.</p>
+<a href="https://github.com/sabarikarthick7/CodeAlpha_Jenkins_Remoting.git" target="_blank" class="project-btn"><i class="fab fa-github"></i>View Project</a>
+</div>
+
+<div class="project-card reveal-scale">
+<h3>Docker Web Server</h3>
+<p>Containerized NGINX web server deployed and managed using Docker for production-ready serving.</p>
+<a href="https://github.com/sabarikarthick7/CodeAlpha_Docker_WebServer.git" target="_blank" class="project-btn"><i class="fab fa-github"></i>View Project</a>
+</div>
+
+<div class="project-card updating-card reveal-scale">
+<h3 class="updating-text">Updating Soon...</h3>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+<div class="container">
+<h2 class="section-title reveal">Technical Skills</h2>
+<div class="skills-grid">
+<div class="skill-card reveal-scale"><i class="fab fa-docker skill-icon"></i><h3>Docker</h3><p>Containerization platform for building and deploying scalable applications.</p></div>
+<div class="skill-card reveal-scale"><i class="fas fa-cogs skill-icon"></i><h3>Jenkins</h3><p>CI/CD automation server for pipeline orchestration and build automation.</p></div>
+<div class="skill-card reveal-scale"><i class="fab fa-aws skill-icon"></i><h3>AWS</h3><p>Cloud platform for deploying scalable and secure infrastructure.</p></div>
+<div class="skill-card reveal-scale"><i class="fab fa-linux skill-icon"></i><h3>Linux Administration</h3><p>System configuration, shell scripting and server management.</p></div>
+<div class="skill-card reveal-scale"><i class="fab fa-windows skill-icon"></i><h3>Windows Administration</h3><p>Windows Server management, system configuration, and user administration.</p></div>
+<div class="skill-card reveal-scale"><i class="fas fa-dharmachakra skill-icon"></i><h3>Kubernetes</h3><p>Container orchestration for managing distributed applications.</p></div>
+<div class="skill-card reveal-scale"><i class="fas fa-sync-alt skill-icon"></i><h3>CI/CD</h3><p>Automated pipelines for continuous integration and deployment.</p></div>
+<div class="skill-card reveal-scale"><i class="fab fa-git-alt skill-icon"></i><h3>Git & GitHub</h3><p>Version control and collaborative development workflows.</p></div>
+<div class="skill-card reveal-scale"><i class="fab fa-python skill-icon"></i><h3>Python</h3><p>Scripting and automation for DevOps workflows and tooling.</p></div>
+</div>
+</div>
+</section>
+
+<!-- SOFT SKILLS -->
+<section id="softskills">
+<div class="container">
+<h2 class="section-title reveal">Soft Skills</h2>
+<div class="grid">
+<div class="skill-item reveal-scale"><i class="fas fa-comments"></i> Communication</div>
+<div class="skill-item reveal-scale"><i class="fas fa-user-tie"></i> Leadership</div>
+<div class="skill-item reveal-scale"><i class="fas fa-users"></i> Team Collaboration</div>
+<div class="skill-item reveal-scale"><i class="fas fa-lightbulb"></i> Problem Solving</div>
+<div class="skill-item reveal-scale"><i class="fas fa-bolt"></i> Quick Learner</div>
+</div>
+</div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+<div class="container">
+<h2 class="section-title reveal">Certifications</h2>
+<div class="grid">
+<div class="cert-card reveal-scale">
+<a href="https://edu.google.accredible.com/d91bb352-8824-47ca-97fa-ea668494bddf#acc.ohJ1jM7v" target="_blank" style="text-decoration:none;color:inherit;">
+<img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" class="cert-img">
+<h3>Google Gemini Certified</h3>
+</a>
+</div>
+<div class="cert-card reveal-scale">
+<a href="https://www.credly.com/badges/81cdc8c7-11f7-4f41-b542-e768323b4735/public_url" target="_blank" style="text-decoration:none;color:inherit;">
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/64/Cisco_logo.svg" class="cert-img">
+<h3>Cisco Networking Basics</h3>
+</a>
+</div>
+<div class="cert-card reveal-scale">
+<a href="aws_cloud_practitioner.png" target="_blank" style="text-decoration:none;color:inherit;">
+<img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" class="cert-img" style="height:45px;">
+<h3>AWS Cloud Practitioner Essentials</h3>
+</a>
+</div>
+</div>
+</div>
+</section>
+
+<!-- LANGUAGES -->
+<section id="languages">
+<div class="container">
+<h2 class="section-title reveal">Languages</h2>
+<div class="grid">
+<div class="card reveal-scale"><h3>English</h3><p>Full Professional Proficiency</p></div>
+<div class="card reveal-scale"><h3>Tamil</h3><p>Native Proficiency</p></div>
+</div>
+</div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+<div class="container">
+<h2 class="section-title reveal">Education</h2>
+<div class="timeline">
+<div class="timeline-item reveal-scale"><h3>Sairam Matric Higher Secondary School</h3><p>Higher Secondary Education – Madurai</p></div>
+<div class="timeline-item reveal-scale"><h3>SRM Institute of Science and Technology</h3><p>B.Tech Aerospace Engineering – Chennai</p></div>
+</div>
+</div>
+</section>
+
+<!-- VOLUNTEERING -->
+<section id="volunteering">
+<div class="container">
+<h2 class="section-title reveal">Volunteering</h2>
+<div class="card reveal">
+<div style="display:flex;gap:25px;align-items:flex-start;flex-wrap:wrap;">
+<div style="flex:1;min-width:250px;">
+<h3 style="margin-bottom:8px;">Community Service Volunteer</h3>
+<p style="color:#3b82f6;font-weight:500;margin-bottom:6px;">Yogam Public Health & Voluntary Social Service Trust, Madurai</p>
+<p style="color:#9ca3af;margin-bottom:20px;">June 2025 · 1 Month</p>
+<p style="color:#cbd5e1;line-height:1.7;">Volunteered for 20 days with Yogam Public Health & Voluntary Social Service Trust, Madurai. Actively participated in community service initiatives and social welfare activities, supporting public outreach and grassroots engagement programs.</p>
+</div>
+<div style="min-width:200px;text-align:center;">
+<a href="volunteering_certificate.png" target="_blank">
+<img src="volunteering_certificate.png" style="width:200px;border-radius:10px;margin-bottom:12px;border:1px solid #1e293b;transition:0.3s;">
+</a>
+<p style="font-size:14px;color:#9ca3af;">View Certificate</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+<div class="container">
+<h2 class="section-title reveal">Contact</h2>
+<div class="contact-buttons reveal">
+<a href="/cdn-cgi/l/email-protection#fd8e9c9f9c8f94969c8f8995949e96d39489bd9a909c9491d39e9290" class="contact-btn"><i class="fas fa-envelope"></i>Email</a>
+<a href="https://github.com/sabarikarthick7" target="_blank" class="contact-btn"><i class="fab fa-github"></i>GitHub</a>
+<a href="https://linkedin.com/in/sabari-karthick-85326730a" target="_blank" class="contact-btn"><i class="fab fa-linkedin"></i>LinkedIn</a>
+</div>
+</div>
+</section>
+
+<footer>© 2026 M. Sabari Karthick | All Rights Reserved</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// ===== PARTICLES =====
+const canvas = document.getElementById("particles-canvas");
+const ctx = canvas.getContext("2d");
+let particles = [];
+
+function resizeCanvas(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
+resizeCanvas();
+window.addEventListener("resize",()=>{resizeCanvas();initParticles();});
+
+function initParticles(){
+  particles=[];
+  const count=Math.floor((canvas.width*canvas.height)/12000);
+  for(let i=0;i<count;i++){
+    particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*1.4+0.3,dx:(Math.random()-0.5)*0.3,dy:(Math.random()-0.5)*0.3,alpha:Math.random()*0.5+0.15});
+  }
+}
+initParticles();
+
+function drawParticles(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  particles.forEach(p=>{
+    ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle=`rgba(147,197,253,${p.alpha})`;ctx.fill();
+    p.x+=p.dx;p.y+=p.dy;
+    if(p.x<0||p.x>canvas.width)p.dx*=-1;
+    if(p.y<0||p.y>canvas.height)p.dy*=-1;
+  });
+  for(let i=0;i<particles.length;i++){
+    for(let j=i+1;j<particles.length;j++){
+      const d=Math.hypot(particles[i].x-particles[j].x,particles[i].y-particles[j].y);
+      if(d<100){
+        ctx.beginPath();ctx.moveTo(particles[i].x,particles[i].y);ctx.lineTo(particles[j].x,particles[j].y);
+        ctx.strokeStyle=`rgba(59,130,246,${0.12*(1-d/100)})`;ctx.lineWidth=0.5;ctx.stroke();
+      }
+    }
+  }
+  requestAnimationFrame(drawParticles);
+}
+drawParticles();
+
+// ===== SCROLL REVEAL =====
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){ e.target.classList.add("visible"); }
+  });
+}, {threshold: 0.08, rootMargin: "0px 0px -30px 0px"});
+
+document.querySelectorAll(".reveal, .reveal-left, .reveal-right, .reveal-scale").forEach((el) => {
+  const parent = el.parentElement;
+  const siblings = Array.from(parent.querySelectorAll(".reveal-scale, .reveal"));
+  const idx = siblings.indexOf(el);
+  if(idx > 0 && el.classList.contains("reveal-scale")) {
+    el.style.transitionDelay = (idx * 0.08) + "s";
+  }
+  revealObserver.observe(el);
+});
+
+// Trigger reveal for elements already in viewport on page load
+window.addEventListener("load", () => {
+  document.querySelectorAll(".reveal, .reveal-left, .reveal-right, .reveal-scale").forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if(rect.top < window.innerHeight && rect.bottom >= 0) {
+      el.classList.add("visible");
+    }
+  });
+});
+
+// ===== BACK TO TOP =====
+window.addEventListener("scroll",()=>{
+  document.getElementById("backToTop").classList.toggle("visible",window.scrollY>400);
+});
+
+// ===== MOBILE MENU =====
+function toggleMenu(){
+  const menu=document.getElementById("mobileMenu");
+  const ham=document.getElementById("hamburger");
+  const open=menu.style.display==="flex";
+  menu.style.display=open?"none":"flex";
+  ham.classList.toggle("open",!open);
+}
+document.querySelectorAll("#mobileMenu a").forEach(a=>a.addEventListener("click",()=>{
+  document.getElementById("mobileMenu").style.display="none";
+  document.getElementById("hamburger").classList.remove("open");
+}));
+
+// ===== NAVBAR ACTIVE + SCROLL =====
+const navLinks = document.querySelectorAll(".nav-links a");
+const mobileLinks = document.querySelectorAll(".mobile-menu a");
+const navbar = document.querySelector(".navbar");
+
+window.addEventListener("scroll",()=>{
+  let current="";
+  document.querySelectorAll("section").forEach(s=>{
+    if(pageYOffset>=s.offsetTop-150) current=s.getAttribute("id");
+  });
+
+  // Desktop nav — pill style active
+  navLinks.forEach(a=>{
+    a.classList.remove("active");
+    if(a.getAttribute("href")==="#"+current) a.classList.add("active");
+  });
+
+  // Mobile nav — active highlight
+  mobileLinks.forEach(a=>{
+    a.classList.remove("active");
+    if(a.getAttribute("href")==="#"+current) a.classList.add("active");
+  });
+
+  // Navbar scrolled style
+  navbar.classList.toggle("scrolled", window.scrollY > 50);
+});
+</script>
+</body>
+</html>
